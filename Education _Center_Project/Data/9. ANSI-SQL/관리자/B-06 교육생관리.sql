@@ -25,7 +25,6 @@ update tblMember set m_major = pm_major where member_seq = 회원번호;
 
 
 
-
 --회원 정보 삭제
 delete from tblMember where member_seq = 회원번호;
 
@@ -187,6 +186,23 @@ from tblAttendance a
                 on s.member_seq = m.member_seq
     where m.member_seq = 학생번호; --member_seq를 변수로 받기 (ex)200)
 
+-----------------------------------------------------------------------------------------------------------------------------
+select
+    s.sugang_seq,
+    sum(case
+        when a.attendance_type = '결석' then 3
+        when a.attendance_type = '지각' then 1
+    end)
+from tblAttendance a
+    inner join tblSugang s
+        on a.sugang_seq = s.sugang_seq
+            inner join tblMember m
+                on s.member_seq = m.member_seq
+                where s.sugang_seq = 200
+   group by s.sugang_seq
+    order by s.sugang_seq;
+
+select * from tblAttendance;
 
 -- 2.
 update tblSugang set progress = '중도탈락' where sugang_seq = 학생번호; --sugang_seq를 변수로 받기

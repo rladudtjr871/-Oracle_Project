@@ -13,11 +13,7 @@
 --강의실명 입력
     insert into tblRoom (room_seq, room_name, room_personel) values ((select max(room_seq) + 1 from tblRoom), '추가 강의실', 수용인원);
 --교재명 입력
-    insert into tblTextBook (txtbook_seq, name, author, publisher_seq) values ((select max(txtbook_seq) + 1 from tblTextBook), '추가 교재명', '지은이명', (select 
-                                                                                                                                                        case when name = '출판사명' then publisher_seq
-                                                                                                                                                        case when name = '출판사명' is null then (insert 출판사테이블에 새로 추가)
-                                                                                                                                                        from tblPublisher 
-                                                                                                                                                            where name = '출판사명'));
+    insert into tblTextBook (txtbook_seq, name, author, publisher_seq) values ((select max(txtbook_seq) + 1 from tblTextBook), '추가 교재명', '지은이명', 출판사번호);
 
 ----------------- 기초 정보 수정 -----------------
 

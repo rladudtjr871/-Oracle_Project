@@ -44,4 +44,4 @@ from tblTeachRec tr
                 inner join tblCourseName cn on c.cname_seq = cn.cname_seq
                     inner join tblSubjectName sn on tr.subname_seq = sn.subname_seq
 
-where sn.subname = 'Oracle' order by 과정명, 교사명 ; --교사이름 입력
+where sn.subname = 'Oracle' order by 과정명, 교사명 ; 

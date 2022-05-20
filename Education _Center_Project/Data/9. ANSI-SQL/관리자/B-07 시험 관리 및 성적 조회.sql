@@ -1,14 +1,9 @@
--- B-06. 관리자 시험 관리 및 성적 관리
+-- B-07. 관리자 시험 관리 및 성적 관리
 
 
 --특정 개설 과정 선택(과정번호)
 --특정 개설 과정에 등록된 개설 과목정보(기간, 과목명)  & ( 성적등록여부/ 시험문제파일등록여부) 확인
---left outer
---inner join
---cn.course_neme
---attend_score
---pilgi_score
---sligi_score
+
 select
     distinct
     sn.subname as "과목명",
@@ -38,7 +33,7 @@ from tblCourse c
                                                 on td.testnum_seq = t.testnum_seq
                                                     left outer join tblTestName tn
                                                         on t.testname_seq = tn.testname_seq --and tn.subname_seq = cs.subname_seq
-                                                    where c.course_seq = 특정개설과정 선택; --1번 혹은 25번
+                                                    where c.course_seq = 1; --1번 혹은 25번
 
 
 
@@ -69,7 +64,7 @@ desc tblCourseName;
 -- 성적 정보 출력시 개설 과목별 출력
 
 select
-    cn.course_name,
+    cn.course_neme,
     sn.subname as "과목명"
 from tblCourse c
     inner join tblCourseName cn
@@ -225,7 +220,7 @@ from tblMember m
 -- 1. 회원번호로 검색할 경우 수강 번호를 알아내는 쿼리 (수강번호로 검색할거면 안해도 된다.)
 select s.sugang_seq from tblMember m inner join tblSugang s on m.member_seq = s.member_seq where m.member_seq = 1;
 
--- 2. 수강번호로 해당 회원의 정보와 수강 과정을 출력
+-- 2. 수강번호로 해당 회원의 정보와 수강 과정을 출력 (교육생 개인별 출력시 교육생 이름, 주민번호 뒷잘, 개설 과정명 /)
 select
     m.member_seq,
     m.m_name,

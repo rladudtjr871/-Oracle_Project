@@ -5,7 +5,7 @@
 
 
 insert into tblConsult (consult_seq, consult_txt, csub_seq, sugang_seq) 
-    values(500, '상담내용'	
+    values((select max(consult_seq)+1 from tblConsult), '새로운상담내용'	
             , (select  
                     cs.csub_seq --과목과정번호  
                 from tblCourse c
